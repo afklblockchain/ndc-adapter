@@ -1,0 +1,79 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:edis="http://www.iata.org/IATA/EDIST/2017.1" >
+    <soapenv:Header>
+        <trackingMessageHeader xmlns="http://www.af-klm.com/soa/xsd/MessageHeader-V1_0">
+            <consumerRef>
+                <userID>w06014962</userID>
+                <partyID>MASHERY</partyID>
+                <consumerID>w06014962</consumerID>
+                <consumerLocation>External</consumerLocation>
+                <consumerType>A</consumerType>
+                <consumerTime>2018-02-13T02:03:19Z</consumerTime>
+            </consumerRef>
+        </trackingMessageHeader>
+        <MessageID xmlns="http://www.w3.org/2005/08/addressing">307d5511-ee5c-4k7b-9f75-25ea761fa31c</MessageID>
+        <RelatesTo RelationshipType="http://www.af-klm.com/soa/tracking/InitiatedBy" xmlns="http://www.w3.org/2005/08/addressing">e8fdd9f3-54da-4da1-9b47-5863k09080ca</RelatesTo>
+        <RelatesTo RelationshipType="http://www.af-klm.com/soa/tracking/PrecededBy" xmlns="http://www.w3.org/2005/08/addressing">89562767-4cbkk-4e90-a159-1070b25992fc</RelatesTo>
+    </soapenv:Header>
+    <soapenv:Body>
+        <edis:AirShoppingRQ Version="17.1" CorrelationID="3f9ddd-dc6b-41c9-8d4e-8594182ed050">
+            <edis:PointOfSale>
+                <edis:RequestTime>2018-02-13T02:03:19</edis:RequestTime>
+            </edis:PointOfSale>
+            <edis:Document/>
+            <edis:Party>
+                <edis:Sender>
+                    <edis:TravelAgencySender>
+                        <edis:Name>TEST AGENCY</edis:Name>
+                        <edis:PseudoCity>AMS</edis:PseudoCity>
+                        <edis:IATA_Number>87654324</edis:IATA_Number>
+                        <edis:AgencyID>id</edis:AgencyID>
+                        <edis:AgentUser>
+                            <edis:AgentUserID>1234</edis:AgentUserID>
+                        </edis:AgentUser>
+                    </edis:TravelAgencySender>
+                </edis:Sender>
+                <edis:Participants>
+                    <edis:Participant>
+                        <edis:EnabledSystemParticipant SequenceNumber="12">
+                            <edis:Name>MASHERY</edis:Name>
+                            <edis:SystemID>MAS</edis:SystemID>
+                        </edis:EnabledSystemParticipant>
+                    </edis:Participant>
+                </edis:Participants>
+                <edis:Recipient>
+                    <edis:ORA_Recipient>
+                        <edis:AirlineID>AF</edis:AirlineID>
+                        <edis:Name>AIRFRANCE</edis:Name>
+                    </edis:ORA_Recipient>
+                </edis:Recipient>
+            </edis:Party>
+            <edis:CoreQuery>
+                <edis:OriginDestinations>
+                    <edis:OriginDestination>
+                        <edis:Departure>
+                            <edis:AirportCode>{{origin}}</edis:AirportCode>
+                            <edis:Date>{{date}}</edis:Date>
+                        </edis:Departure>
+                        <edis:Arrival>
+                            <edis:AirportCode>{{destination}}</edis:AirportCode>
+                        </edis:Arrival>
+                    </edis:OriginDestination>
+                </edis:OriginDestinations>
+            </edis:CoreQuery>
+            <edis:Preference>
+                <edis:CabinPreferences>
+                    <edis:CabinType>
+                        <edis:Code>5</edis:Code>
+                    </edis:CabinType>
+                </edis:CabinPreferences>
+            </edis:Preference>
+            <edis:DataLists>
+                <edis:PassengerList>
+                    <edis:Passenger>
+                        <edis:PTC>ADT</edis:PTC>
+                    </edis:Passenger>
+                </edis:PassengerList>
+            </edis:DataLists>
+        </edis:AirShoppingRQ>
+    </soapenv:Body>
+</soapenv:Envelope>
