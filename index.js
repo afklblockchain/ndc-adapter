@@ -1,11 +1,36 @@
 var fs = require('fs');
 var request = require('request-promise');
-var xml2js = require('xml2js');
-var parser = new xml2js.Parser();
+var convert = require('xml-js');
 const path = require("path");
 
+var NDC_ADAPTER_LH = function(url, apiKey) {
+    var adapter = this;
+    adapter.url=url;
+    adapter.apiKey = apiKey;
 
-var NDC_ADAPTER = function(url, apiKey) {
+    adapter.AirShopping = function (originLH, destinationLH, dateLH, dateEndLH) {
+        return request({
+            uri: adapter.url + "catalogues=LH&origin="+originLH+"&destination="+destinationLH+"&travel-date="+dateLH+"&return-date="+dateEndLH+"&cabin-class=economy&travelers=%28adult%3D1%29",
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' +adapter.apiKey,
+            }
+        }).then(function (body) {
+            if (!body){
+                console.log("ERROR")
+                return;
+            }
+            console.log("OK")
+            return body;
+        })
+    }
+
+    return adapter;
+
+}
+
+var NDC_ADAPTER_AFKL = function(url, apiKey) {
     var adapter = this;
     adapter.url=url;
     adapter.apiKey = apiKey;
@@ -30,6 +55,7 @@ var NDC_ADAPTER = function(url, apiKey) {
                 console.log("ERROR")
                 return;
             }
+            // console.log(body)
             return body;
         })
     }
@@ -38,4 +64,12 @@ var NDC_ADAPTER = function(url, apiKey) {
 
 }
 
-module.exports = NDC_ADAPTER;
+var NPM = NDC_ADAPTER_LH('https://api-sandbox.lufthansa.com/v1/offers/fares/allfares?', 'r4r7swg9qfvrjg33kcc3s9kb');
+NPM.AirShopping("LHR","FRA","2019-02-01","2019-02-04").then(function (resp){
+    var options = {compact: true, ignoreComment: true, spaces: 4};
+    var json = JSON.parse(resp);
+    var result = convert.json2xml(json, options);
+    console.log(result);
+});
+module.exports = NDC_ADAPTER_AFKL;
+module.exports = NDC_ADAPTER_LH;
