@@ -64,8 +64,8 @@ var NDC_ADAPTER_AFKL = function(url, apiKey) {
     return adapter;
 
 }
-//var NPM = NDC_ADAPTER_AFKL('https://ndc-rct.airfranceklm.com/passenger/distribmgmt/001448v01/EXT?', '3nnfesjhfupgh9dbb42yay55')
-//NPM.AirShopping('AMS', 'JFK', '2018-11-02').then(function(body) {console.log('done', body)})
+var NPM = NDC_ADAPTER_AFKL('https://ndc-rct.airfranceklm.com/passenger/distribmgmt/001448v01/EXT?', '3nnfesjhfupgh9dbb42yay55')
+NPM.AirShopping('AMS', 'JFK', '2018-11-02').then(function(body) {console.log('done', body)})
 
 var NPM = NDC_ADAPTER_LH('https://api-sandbox.lufthansa.com/v1/offers/fares/allfares?', 'r4r7swg9qfvrjg33kcc3s9kb');
 NPM.AirShopping("LHR","FRA","2019-02-01","2019-02-04").then(function (resp){
@@ -74,4 +74,5 @@ NPM.AirShopping("LHR","FRA","2019-02-01","2019-02-04").then(function (resp){
     var result = convert.json2xml(json, options);
     console.log(result);
 });
-//module.exports = NDC_ADAPTER;
+module.exports = NDC_ADAPTER_AFKL;
+module.exports = NDC_ADAPTER_LH;
