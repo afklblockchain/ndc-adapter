@@ -47,7 +47,7 @@ var NDC_ADAPTER_AFKL = function(url, apiKey) {
             body: body,
             headers: {
                 'api_key': adapter.apiKey,
-                'SOAPAction': '"http://www.af-klm.com/services/passenger/ProvideAirShopping/provideAirShopping"',
+                'SOAPAction': '{af-soap-action}',
                 'Content-Type': 'text/xml'
             }
         }).then(function (body) {
@@ -64,7 +64,7 @@ var NDC_ADAPTER_AFKL = function(url, apiKey) {
 
 }
 
-var NPM = NDC_ADAPTER_LH('https://api-sandbox.lufthansa.com/v1/offers/fares/allfares?', 'r4r7swg9qfvrjg33kcc3s9kb');
+var NPM = NDC_ADAPTER_LH({lh-url}, {api-token});
 NPM.AirShopping("LHR","FRA","2019-02-01","2019-02-04").then(function (resp){
     var options = {compact: true, ignoreComment: true, spaces: 4};
     var json = JSON.parse(resp);
